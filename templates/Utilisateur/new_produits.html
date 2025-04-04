@@ -1,0 +1,111 @@
+{% extends "Utilisateur/en-tête-utilisateur.html" %}
+{% load static%}
+
+{% block titre %}Nouveau produit{% endblock titre %}
+
+{% block dashbord %}  {% endblock %}
+{% block produits_dispo %}{% endblock %}
+{% block new_produits %}active{% endblock %}
+{% block demande_achat %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="card shadow mb-4 col-12 col-md-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info text-center">Enregister le nouveau produit</h6>
+      </div>
+      <div class="card-body" style="max-height:100vh;overflow-y:auto">
+        {% if messages %}
+          <p class="alert alert-info">{{ messages }}</p>
+        {% endif %} 
+        <form action="{% url "new_produits" user.id %}"method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="form-group row ">
+            <label class="px-1" style='font-weight:bold;color:black;'>Nom :</label>
+            <input type="text" class="px-1 form-control" required name="nomproduit" id="nomproduit" placeholder="Entrez le nom de votre produit ">
+          </div>
+          <div class="form-group row ">
+            <label class="px-1" style='font-weight:bold;color:black;'>Poids :</label>
+            <input type="text" class="px-1 form-control" required name="poidsproduit" id="poidsproduit" placeholder="Entrez le poid de votre produit ">
+          </div>
+          <div class="form-group row ">
+            <label class="px-1" style='font-weight:bold;color:black;'>Etat </label>
+                      <select class="px-1 form-control" name="etat" required id="etat">
+                          <option value="0">
+                              --- Choisisez l'etat ---
+                          </option>
+                          <option value="Comprimé">Comprimé</option>
+                <option value="Liquide">Liquide</option>
+                <option value="En poudre">En poudre</option>
+                      </select>
+          </div>
+          <div class="form-group row ">
+            <label class="px-1" style='font-weight:bold;color:black;'>Couleur </label>
+                      <select class="px-1 form-control" name="couleur" required id="couleur">
+                          <option value="0">
+                              --- Choisisez la couleur ---
+                          </option>
+                          <option value="Blanc">Blanc</option>
+                <option value="Rouge">Rouge</option>
+                <option value="Jaune">Jaune</option>
+                <option value="Bleu">Bleu</option>
+                <option value="Vert">Vert</option>
+                <option value="Marron">Marron</option>
+                <option value="Berge">Berge</option>
+                <option value="Violet">Violet</option>
+                      </select>
+          </div>
+          <div class="form-group row ">
+            <label class="px-1" style='font-weight:bold;color:black;'>Prix :</label>
+            <input type="number" class="px-1 form-control" required name="prixproduit" id="prixproduit" placeholder="Entrez le prix de votre produit ">
+          </div>
+          <div class="form-group row ">
+            <label class="px-1" style='font-weight:bold;color:black;'>Nombre comprimé :</label>
+            <input type="number" class="px-1 form-control" required name="nbrcprproduit" id="nbrcprproduit" placeholder="Entrez le nombre de comprimé/produit ">
+          </div>
+          <div class="form-group row ">
+            <label class="px-1" style='font-weight:bold;color:black;'>Image :</label>
+            <input type="file" class="px-1 form-control-file" required name="imageproduit" id="imageproduit">
+          </div>
+          <div class="form-row">
+            <div class="form-group row col-12 col-lg-12 justify-content-end">
+                <input type="submit" class="btn btn-outline-info" href="#" style="color:blue;" value="Ajouter" name="ajouter">
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+    <div class="card shadow mb-4 col-12 col-md-8">
+      <div class="card-header py-3">
+          <h6 class="m-0 font-weight-bold text-info text-center">La liste des nouveaux produits </h6>
+      </div>
+      <div class="card-body">
+          <div class="table-responsive" style="max-height:100vh;overflow-y:auto">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                      <tr style="color:black">
+                          <th>Nom</th>
+                          <th>Poids</th>
+                          <th>Etat</th>
+                          <th>Prix</th>
+                          <th>Couleur</th>
+                          <th>Nombre Comprimé</th>
+                      </tr>
+                  </thead>
+                  <tbody style="color:black">
+                     {% for produits in produits %}
+                    <tr>
+                      <td>{{produits.nom}}</td>
+                      <td>{{produits.poids}}</td>
+                      <td>{{produits.etat}}</td>
+                      <td>{{produits.prix}}</td>
+                      <td>{{produits.couleur}}</td>
+                      <td>{{produits.nbr_comprime}}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                 
+              </table>
+    </div>
+  </div>
+{% endblock content %}

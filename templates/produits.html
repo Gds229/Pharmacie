@@ -1,0 +1,81 @@
+{% extends "en-tête.html" %}
+{% load static%}
+
+{% block titre %}Produits{% endblock titre %}
+
+{% block home %}  {% endblock %}
+{% block produits %}active{% endblock %}
+{% block phamacie %}  {% endblock %}
+{% block contact %}  {% endblock %}
+
+{% block content %}
+<div class="row px-1">
+  <div class="card shadow mb-4 col-12 col-md-12">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info text-center">La liste des produits disponibles </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" style="max-height:100vh;overflow-y:auto">
+            <table class="data-table table nowrap" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="color:black">
+                        <th class="table-plus datatable-nosort">Image</th>
+                        <th>Nom</th>
+                        <th>Poids</th>
+                        <th>Etat</th>
+                        <th>Prix</th>
+                        <th>Couleur</th>
+                        <th>Comprimé</th>
+                        <th>Phamacie</th>
+                        <th class="datatable-nosort">Actions</th>
+                    </tr>
+                </thead>
+                <tbody style="color:black">
+                  <tr>
+                    {% for produitall in produitall %}
+                    <tr>
+                      <td class="table-plus">
+                        <img src="{{produitall.image.url}}" width="70" height="70" alt="">
+                    </td>
+                      <td>{{produitall.nom}}</td>
+                      <td>{{produitall.poids}}</td>
+                      <td>{{produitall.etat}}</td>
+                      <td>{{produitall.prix}}</td>
+                      <td>{{produitall.couleur}}</td>
+                      <td>{{produitall.nbr_comprime}}</td>
+                      <td>{{produitall.phamaciens.nomphamacie}}</td>
+                      <td class="row d-flex">
+                        <a href="{% url 'commandeproduit' produitall.id %}" class="btn btn-sm bg-success text-dark"><strong>Commande</strong></a>
+                      </td>
+                    </tr>
+                    {% endfor %}
+                  </tr>
+                </tbody>
+               
+            </table>
+  </div>
+</div>
+<footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-lg-6">
+          <div class="block-5 mb-5">
+            <h3 class="footer-heading mb-4">Information </h3>
+            <ul class="list-unstyled">
+              <li class="address">Lalo/Couffo/Bénin/Afrique</li>
+              <li class="phone"><a href="tel://2290143758370">+2290143758370</a></li>
+              <li class="email">phamacieCouffoLalo@gmail.com</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-6">
+          <p>
+            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            Copyright &copy;
+            <script>document.write(new Date().getFullYear());</script> Tous les droits sont reservés 
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% endblock content %}

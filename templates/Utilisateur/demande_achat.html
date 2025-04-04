@@ -1,0 +1,70 @@
+{% extends "Utilisateur/en-tête-utilisateur.html" %}
+{% load static%}
+
+{% block titre %}Demande d'achat{% endblock titre %}
+
+{% block dashbord %}  {% endblock %}
+{% block produits_dispo %}{% endblock %}
+{% block new_produits %}{% endblock %}
+{% block demande_achat %}active{% endblock %}
+
+{% block content %}
+<div class="card shadow mb-4 ">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info text-center">La liste des demandes d'achat </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive" style="max-height:100vh;overflow-y:auto">
+            <table class="data-table table nowrap" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="color:black">
+                        <th class="table-plus datatable-nosort">Image</th>
+                        {% comment %} <th>Nom</th>
+                        <th>Prénom</th> {% endcomment %}
+                        <th>Téléphone</th>
+                        {% comment %} <th>Quantité</th>
+                        <th>Postion</th> {% endcomment %}
+                        <th>Date_demande</th>
+                        <th>Nom_produit</th>
+                        {% comment %} <th>Poids</th>
+                        <th>Etat</th>
+                        <th>Couleur</th>
+                        <th>Prix</th>
+                        <th>Nombre</th>
+                        <th>Payer</th> {% endcomment %}
+                        <th class="datatable-nosort">Actions</th>
+                    </tr>
+                </thead>
+                <tbody style="color:black">
+                    {% for demande in demande %}
+                   <tr>
+                    <td class="table-plus">
+                        <img src="{{demande.produit.image.url}}" width="70" height="70" alt="">
+                    </td>
+                     {% comment %} <td>{{demande.nom}}</td>
+                     <td>{{demande.prenom}}</td> {% endcomment %}
+                     <td>{{demande.tel}}</td>
+                     {% comment %} <td>{{demande.quantité}}</td>
+                     <td>{{demande.position}}</td> {% endcomment %}
+                     <td>{{demande.date_demd}}</td>
+                     <td>{{demande.produit.nom}}</td>
+                     {% comment %} <td>{{demande.produit.poids}}</td>
+                     <td>{{demande.produit.etat}}</td>
+                     <td>{{demande.produit.couleur}}</td>
+                     <td>{{demande.produit.prix}}</td>
+                     <td>{{demande.produit.nbr_comprime}}</td>
+                     <td>
+                        {{demande.payer}}
+                     </td> {% endcomment %}
+                     <td class="row d-flex">
+                        <td><a href={% url "demandeValider" user.id demande.id %} class="btn btn-sm bg-success text-dark"><strong>Accepter</strong></a></td>
+                        <td><a href={% url "demandeRefuser" user.id demande.id %} class="btn btn-sm bg-danger text-dark"><strong>Refuser</strong></a></td>
+                        <td><a href={% url "reçudemande" demande.id  %} class="btn btn-sm bg-info text-dark"><strong>Reçu</strong></a></td>
+                     </td>
+                   </tr>
+                   {% endfor %}
+                 </tbody>
+               
+            </table>
+</div>
+{% endblock content %}

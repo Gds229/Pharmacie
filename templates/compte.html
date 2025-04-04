@@ -1,0 +1,63 @@
+{% extends "en-tête.html" %}
+{% load static%}
+
+{% block titre %}Compte{% endblock titre %}
+
+{% block home %}  {% endblock %}
+{% block produits %}{% endblock %}
+{% block phamacie %}{% endblock %}
+{% block compte %}active{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5 h-75">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block" id="imagelogo">
+                        </div>
+                        <div class="col-lg-6" style="color:black">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4" style="font-family:Bookman Old Style;"><em>CONNEXION</em></h1>
+                                </div>
+                                {% if messages %}
+                                    <p class="alert alert-info">{{ messages }}</p>
+                                {% endif %} 
+                                <form  method="POST" action={% url "compte" %} enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group row ">
+                                        <input type="username" class=" form-control" required name="name" id="name" placeholder="Username">
+                                    </div>
+                                    <div class="form-group row">
+                                        <input type="password" class=" form-control" required name="pass" id="password" placeholder="Password">
+                                    </div>
+                                    <div class="form-row rounded">
+                                            <input type="submit" class="btn d-flex p-2 offset-4 bg-info" style="color:white;" href="#" style="color:blue;" value="Connecté" name="Connecté">   
+                                    </div>
+                                </form>
+                                <hr>
+                                <div class="text-center">
+                                    <a class="small"forgot-password.html  href={% url "forgetpassword" %}>Mots de passe oublié ..</a>
+                                    &nbsp <br> 
+                                    Avez-vous un compte? <a class="small" href={% url "inscription" %}>Inscrivez-vous</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock content %}

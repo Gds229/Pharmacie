@@ -1,0 +1,56 @@
+{% extends "Utilisateur/en-tête-utilisateur.html" %}
+{% load static%}
+
+{% block titre %}Produit disponible{% endblock titre %}
+
+{% block dashbord %}  {% endblock %}
+{% block produits_dispo %}active{% endblock %}
+{% block new_produits %}{% endblock %}
+{% block demande_achat %}{% endblock %}
+
+{% block content %}
+<div class="card shadow mb-4 " >
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-info text-center">La liste des produits disponibles </h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive"  style="max-height:100vh;overflow-y:auto">
+            <table class="data-table table nowrap" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr style="color:black">
+                        <th class="table-plus datatable-nosort">Image</th>
+                        <th >Nom</th>
+                        <th>Poids</th>
+                        <th>Etat</th>
+                        <th>Prix</th>
+                        <th>Couleur</th>
+                        <th>Nombre Comprimé</th>
+                        <th class="datatable-nosort">Actions</th>
+                    </tr>
+                </thead>
+                <div>
+                    
+                </div>
+                <tbody style="color:black">
+                   {% for produits in produits %}
+                  <tr>
+                    <td class="table-plus">
+                        <img src="{{produits.image.url}}" width="70" height="70" alt="">
+                    </td>
+                    <td>{{produits.nom}}</td>
+                    <td>{{produits.poids}}</td>
+                    <td>{{produits.etat}}</td>
+                    <td>{{produits.prix}}</td>
+                    <td>{{produits.couleur}}</td>
+                    <td>{{produits.nbr_comprime}}</td>
+                    <td class="row d-flex">
+                        <a href="#" class="btn btn-sm bg-success text-dark"><strong>Détail</strong></a>
+                      </td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+  
+               
+            </table>
+</div>
+{% endblock content %}

@@ -1,0 +1,107 @@
+{% extends "en-tête.html" %}
+{% load static%}
+
+{% block titre %}Incription{% endblock titre %}
+
+{% block home %}  {% endblock %}
+{% block produits %}{% endblock %}
+{% block phamacie %}{% endblock %}
+{% block compte %}{% endblock %}
+
+{% block content %}
+<div class="mx-md-5 mt-1" style="font-family: New Times Roman;">
+    <div class="card mx-md-5 shadow bg-white rounded">
+      <h5 class="card-header text-center bg-info " style="color: black;"><strong><em> Incription</em></strong></h5>
+      <div class="card-body">
+          {% if messagesTelExistant %}
+            <p class="alert alert-danger">{{ messagesTelExistant }}</p>
+        {% endif %}
+        
+        {% if messagesEmailExistant %}
+            <p class="alert alert-danger">{{ messagesEmailExistant }}</p>
+        {% endif %} 
+        {% if messagevalide %}
+            <p class="alert alert-danger">{{ messagevalide }}</p>
+        {% endif %} 
+        <form action="#" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-4 d-none d-lg-block">Nom </label>
+                    <input type="text" class="col-11 col-lg-10 form-control" required name="nom" id="nom" placeholder="Entrez le nom du phamacien ">
+                </div>
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-4 d-none d-lg-block">Prénom </label>
+                    <input type="text" class="col-11 col-lg-10 form-control" required name="prenom" id="prenom" placeholder="Entrez le prénom du phamacien ">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-4 d-none d-lg-block">Mail</label>
+                    <input type="email" class="col-11 col-lg-10 form-control" required name="email" id="email" placeholder="Entrez le mail ">
+                </div>
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-8 d-none d-lg-block">Téléphone</label>
+                    <input type="tel" class="col-11 col-lg-10 form-control" required name="tel" id="tel" placeholder="Entrez le numéro de télephone ">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-4 d-none d-lg-block">Nom de la phamacie</label>
+                    <input type="text" class="col-11 col-lg-10 form-control" required name="nomPhamaciens" id="nomPhamaciens" placeholder="Entrez le nom de la phamacie ">
+                </div>
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-4 d-none d-lg-block">Photo </label>
+                    <input type="file" class="col-11 col-lg-10 form-control-file" required name="photoprofil" id="photoprofil">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-12 d-none d-lg-block">Sexe </label>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" required name="sexe" id="Masculin" value="Masculin">
+                      <label class="form-check-label">
+                        Masculin
+                      </label>
+                    </div> &nbsp&nbsp
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="sexe" id="Féminin" value="Féminin">
+                      <label class="form-check-label">
+                        Féminin
+                      </label>
+                    </div>
+                </div>
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-8 d-none d-lg-block">Date de naissance</label>
+                    <input type="date" class="col-11 col-lg-10 form-control" required id="datenaissance" name="datenaissance" placeholder="Entrez la date de naissance ">
+                </div>	
+            </div>
+            <div class="form-row">
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-8 d-none d-lg-block">Mot de passe</label>
+                    <input type="password" class="col-11 col-lg-10 form-control" required name="motdepasse" id="motdepasse" placeholder="Entrez le mot de passe ">
+                </div>
+                <div class="form-group row col-12 col-lg-6">
+                    <label class=" col-8 d-none d-lg-block">Confirmer mot de passe</label>
+                    <input type="password" class="col-11 col-lg-10 form-control" required name="Cmotdepasse" id="Cmotdepasse" placeholder="Confirmer le mot de passe ">
+                </div>
+            </div>
+            <div class="form">
+                <div class="form-group row ">
+                    <label class="px-1" style='font-weight:bold;color:black;'>Description :</label>
+                    <textarea cols="20" rows="4" class="px-1 form-control" required name="descrip" id="descrip" placeholder="Présentez-vous et décrivez votre pharmacie"></textarea>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group row col-12 col-lg-12 justify-content-end">
+                    Pour aller sur la page&nbsp <a class="small" href={% url "compte" %}>Connexion</a> .Cliquez sur connexion&nbsp&nbsp
+                    <input type="submit" class="btn btn-outline-info " href={% url "inscription" %} style="color:blue;" value="Inscrit" name="Inscrit">
+                </div>
+            </div>
+        </form>
+        
+      </div>
+    </div>
+</div>
+
+{% endblock content %}

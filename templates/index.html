@@ -1,0 +1,238 @@
+{% extends "en-tête.html" %}
+{% load static%}
+
+{% block titre %}Phamacie en ligne{% endblock titre %}
+{% block home %}active{% endblock %}
+{% block produits %}{% endblock %}
+{% block phamacie %}  {% endblock %}
+{% block contact %}  {% endblock %}
+
+{% block content %}
+<div class="site-blocks-cover" style="background-image: url('static/images/hero_1.jpg');">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto order-lg-2 align-self-center">
+        <div class="site-block-cover-content text-center">
+          <h2 class="sub-title">Medecine numérique, la disponibilité des comprimés tous les jours</h2>
+          <h1>Bienvenue à la phamacie en ligne</h1>
+          <p>
+            <a href="{% url 'produits' %}" class="btn btn-primary px-5 py-3">Consulter maintenant</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-section">
+  <div class="container">
+    <div class="row align-items-stretch section-overlap">
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap bg-primary h-100">
+          <a href="#" class="h-100">
+            <h5>Produit <br> graduit</h5>
+            <p>
+              Amet sit amet dolor
+              <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap h-100">
+          <a href="#" class="h-100">
+            <h5>Phamacie <br> Tous produits disponible</h5>
+            <p>
+              Amet sit amet dolor
+              <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4 mb-4 mb-lg-0">
+        <div class="banner-wrap bg-warning h-100">
+          <a href="#" class="h-100">
+            <h5>Nos differents <br> Phamaciens</h5>
+            <p>
+              Amet sit amet dolor
+              <strong>Lorem, ipsum dolor sit amet consectetur adipisicing.</strong>
+            </p>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="title-section text-center col-12">
+        <h2 class="text-uppercase">Quelques comprimés</h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6 col-lg-4 text-center item mb-4">
+        <span class="tag">Sale</span>
+        <a href="#"> <img src={% static 'images/product_01.png' %} alt="Image"></a>
+        <h3 class="text-dark"><a href="#">Bioderma</a></h3>
+        <p class="price"><del>95.00</del> &mdash; $55.00</p>
+      </div>
+      <div class="col-sm-6 col-lg-4 text-center item mb-4">
+        <a href="#"> <img src={% static 'images/product_02.png' %} alt="Image"></a>
+        <h3 class="text-dark"><a href="#">Chanca Piedra</a></h3>
+        <p class="price">$70.00</p>
+      </div>
+      <div class="col-sm-6 col-lg-4 text-center item mb-4">
+        <a href="#"> <img src={% static 'images/product_03.png' %} alt="Image"></a>
+        <h3 class="text-dark"><a href="#">Umcka Cold Care</a></h3>
+        <p class="price">$120.00</p>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 text-center item mb-4">
+
+        <a href="#"> <img src={% static "images/product_04.png" %} alt="Image"></a>
+        <h3 class="text-dark"><a href="#">Cetyl Pure</a></h3>
+        <p class="price"><del>45.00</del> &mdash; $20.00</p>
+      </div>
+      <div class="col-sm-6 col-lg-4 text-center item mb-4">
+        <a href="#"> <img src={% static 'images/product_05.png' %} alt="Image"></a>
+        <h3 class="text-dark"><a href="#">CLA Core</a></h3>
+        <p class="price">$38.00</p>
+      </div>
+      <div class="col-sm-6 col-lg-4 text-center item mb-4">
+        <span class="tag">Sale</span>
+        <a href="#"> <img src={% static 'images/product_06.png' %} alt="Image"></a>
+        <h3 class="text-dark"><a href="#">Poo Pourri</a></h3>
+        <p class="price"><del>$89</del> &mdash; $38.00</p>
+      </div>
+    </div>
+    <div class="row mt-5">
+      <div class="col-12 text-center">
+        <a href="{% url 'produits' %}" class="btn btn-primary px-4 py-3">Voir plus</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="title-section text-center col-12">
+        <h2 class="text-uppercase">Quelques phamaciens</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 block-3 products-wrap">
+        <div class="nonloop-block-3 no-direction owl-carousel">
+          {% for phamacie in phamacie %}
+          <div class="testimony">
+            <blockquote>
+              <img src="{{phamacie.image.url}}" alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+              <p>&ldquo;{{phamacie.descrp}}&rdquo;</p>
+            </blockquote>
+
+            <p>&mdash; {{phamacie.prenom}} {{phamacie.nom}}</p>
+          </div>
+          {% endfor %}
+
+          <div class="testimony">
+            <blockquote>
+              <img src={% static 'images/person_1.jpg' %} alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+              <p>&ldquo;Lorem ipsum dolor, sitame tconsec tetu ad ipisi cing elit.Nemoomnisvoluptatem consectetur quam tempore obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat unde.&rdquo;</p>
+            </blockquote>
+
+            <p>&mdash; Kelly Holmes</p>
+          </div>
+    
+          <div class="testimony">
+            <blockquote>
+              <img src={% static 'images/person_2.jpg' %} alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+              <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
+                obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
+                unde.&rdquo;</p>
+            </blockquote>
+          
+            <p>&mdash; Rebecca Morando</p>
+          </div>
+    
+          <div class="testimony">
+            <blockquote>
+              <img src={% static 'images/person_3.jpg' %} alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+              <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
+                obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
+                unde.&rdquo;</p>
+            </blockquote>
+          
+            <p>&mdash; Lucas Gallone</p>
+          </div>
+    
+          <div class="testimony">
+            <blockquote>
+              <img src={% static 'images/person_4.jpg' %} alt="Image" class="img-fluid w-25 mb-4 rounded-circle">
+              <p>&ldquo;Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo omnis voluptatem consectetur quam tempore
+                obcaecati maiores voluptate aspernatur iusto eveniet, placeat ab quod tenetur ducimus. Minus ratione sit quaerat
+                unde.&rdquo;</p>
+            </blockquote>
+          
+            <p>&mdash; Andrew Neel</p>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="site-section bg-secondary bg-image" style="background-image: url('static/images/bg_2.jpg');">
+  <div class="container">
+    <div class="row align-items-stretch">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('static/images/bg_1.jpg');">
+          <div class="banner-1-inner align-self-center">
+            <h2>Produits phanaceutiques</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
+            </p>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <a href="#" class="banner-1 h-100 d-flex" style="background-image: url('static/images/bg_2.jpg');">
+          <div class="banner-1-inner ml-auto  align-self-center">
+            <h2>Expert phamaceutique</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae ex ad minus rem odio voluptatem.
+            </p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 col-lg-6">
+        <div class="block-5 mb-5">
+          <h3 class="footer-heading mb-4">Information </h3>
+          <ul class="list-unstyled">
+            <li class="address">Lalo/Couffo/Bénin/Afrique</li>
+            <li class="phone"><a href="tel://2290143758370">+2290143758370</a></li>
+            <li class="email">phamacieCouffoLalo@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-6">
+        <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy;
+          <script>document.write(new Date().getFullYear());</script> Tous les droits sont reservés 
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{% endblock content %}

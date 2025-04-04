@@ -1,0 +1,52 @@
+{% extends "en-tête.html" %}
+{% load static%}
+
+{% block titre %}Commande{% endblock titre %}
+
+{% block content %}
+
+    <div class="container card shadow mb-4 col-12 col-md-4 px-2">
+        {% for produit in produit %}
+        <div class="card-header m-0 font-weight-bold text-info text-center"> <spam style="color: black;">Commande de :</spam>  {{produit.nom}} <br>{{produit.poids}}/{{produit.etat}}/{{produit.couleur}}/{{produit.prix}}fcfa  <br> <spam style="color: black;">Pharmacie :</spam> {{produit.phamaciens.nomphamacie}}</div>
+        {% if messages %}
+            <p class="alert alert-info">{{ messages }}</p>
+        {% endif %}
+        <div class="card-body">
+            <div class="card ">
+                <div class="card-body">
+                  <form class="formlaire2" action="#" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-group row ">
+                      <label class="px-1" style='font-weight:bold;color:black;'>Nom :</label>
+                      <input type="text" class="px-1 form-control" required name="nom" id="nom" placeholder="Entrez votre nom  ">
+                    </div>
+                    <div class="form-group row ">
+                      <label class="px-1" style='font-weight:bold;color:black;'>Prenom :</label>
+                      <input type="text" class="px-1 form-control" required name="prenom" id="prenom" placeholder="Entrez votre prénom ">
+                    </div>
+                    <div class="form-group row ">
+                      <label class="px-1" style='font-weight:bold;color:black;'>Téléphone :</label>
+                      <input type="tel" class="px-1 form-control" required name="tel" id="tel" value="+229" placeholder="Entrez votre numér de téléphone ">
+                    </div>
+                      <div class="form-group row ">
+                      <label class="px-1" style='font-weight:bold;color:black;'>Quantité :</label>
+                      <input type="number" class="px-1 form-control" required name="qte" id="qte" placeholder="Entrez la quantité de votre produit ">
+                    </div>
+                    <div class="form-group row ">
+                      <label class="px-1" style='font-weight:bold;color:black;'>Position :</label>
+                      <textarea cols="20" rows="4" class="px-1 form-control" required name="position" id="position" placeholder="Renseigner votre position"></textarea>
+                    </div>
+
+
+                    <div class="form-row">
+                      <div class="form-group row col-12 col-lg-12 justify-content-end">
+                          <input type="submit" class="btn btn-outline-info " href="#" style="color:blue;" value="Commander" name="ajouter">
+                      </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,51 @@
+{% extends "en-tête.html" %}
+{% load static%}
+  <script src="https://cdn.kkiapay.me/k.js">
+{% block titre %}Montant{% endblock titre %}
+
+{% block content %}
+
+    <div class="container card shadow mb-4 col-12 col-md-4 px-2">
+        {% for produit in produit %}
+        <div class="card-header m-0 font-weight-bold text-info text-center"> <spam style="color: black;">Montant </spam></div>
+        {% if messages %}
+            <p class="alert alert-info">{{ messages }}</p>
+        {% endif %}
+        <div class="card-body">
+            <div class="card ">
+                <div class="card-body">
+                  <form  class="formulaire" id="formulaire" action='#' method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                      <div class="form-group row ">
+                      <label class="px-1" style='font-weight:bold;color:black;'>Montant : {{produit.prix}}*{{quantite}} = {{montant}} fcfa</label>
+                      <input type="hidden" value="{{montant}}" class="montant" name="montant" id="montant">
+                    </div>
+                    <div class="form-row">
+                      <div class="form-group row col-12 col-lg-12 justify-content-end">
+                          <a href="#" type="submit"class="kkiapay-button" class="btn btn-outline-info " style="color:blue;" name="valide">Valider</a>
+                      </div>
+                  </div>
+                  </form>
+                </div>
+              </div>
+        </div>
+        {% endfor %}
+    </div>
+    <script src="https://cdn.kkiapay.me/k.js"></script>
+    <script>
+      document.getElementById('formulaire').addEventListener('submit', function(event) {
+        event.preventDefault(); // Empêche le rechargement de la page
+      
+        var montant = document.getElementById('montant').value; // Récupère la valeur du champ de saisie
+        console.log(montant); // Affiche la valeur dans la console
+      
+        openKkiapayWidget({amount:montant,position:"right",callback:"/success",
+        data:"GDS Shop",
+        theme:"green",
+        sandbox:"true",
+        key:"64817ef00a1311f0b26665b0670ad6cf"})
+      });
+    </script>
+    
+{% endblock content %}
+

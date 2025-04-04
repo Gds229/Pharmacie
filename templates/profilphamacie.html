@@ -1,0 +1,51 @@
+{% extends "en-tête.html" %}
+{% load static%}
+
+{% block titre %}Profil{% endblock titre %}
+
+{% block content %}
+<div class="pd-ltr-20 main-container card shadow mb-4 col-12 col-md-12 px-5">
+    {% for profil in profil %}
+    <div class="card-header m-0 font-weight-bold text-info text-center">Profil</div>
+    <div class="card-body">
+        <div class="card ">
+            <div class="card-body">
+                <div class="card-box pd-20 height-100-p mb-30">
+                    <div class="row align-items-center ">
+                        <div class="col-md-4 h-50 w-50  container">
+                            <img class="img img-fluid" src="{{profil.image.url}}" alt="">
+                        </div>
+                    </div>
+                </div><br>
+                <div class="card-box pd-20 height-100-p mb-30 text-center">
+                    <h4 style="color: black;">{{profil.descrp}}</h4>
+                </div><br>
+                <div class="text-center card w-50 offset-3" style="background-color: rgb(77, 92, 98);">
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <h4 style="color: black;">Nom du pharmacien(ne): <spam style="color: whitesmoke;">{{profil.nom}}</spam></h4>
+                    </div>    
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <h4 style="color: black;">Prénom du pharmacien(ne): <spam style="color: whitesmoke;">{{profil.prenom}}</spam></h4>
+                    </div>
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <h4 style="color: black;">Phamacie: <spam style="color: whitesmoke;">{{profil.nomphamacie}}</spam></h4>
+                    </div>
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <h4 style="color: black;">Sexe: <spam style="color: whitesmoke;">{{profil.sexe}}</spam></h4>
+                    </div> 
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <h4 style="color: black;">Date de naissance: <spam style="color: whitesmoke;">{{profil.datenaissance}}</spam></h4>
+                    </div>
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <h4 style="color: black;">Téléphone: <spam style="color: whitesmoke;">{{profil.tel}}</spam></h4>
+                    </div>
+                    <div class="card-box pd-20 height-100-p mb-30">
+                        <h4 style="color: black;">Mail: <spam style="color: whitesmoke;">{{profil.email}}</spam></h4>
+                    </div>
+                </div> 
+            </div>
+          </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock content %}
